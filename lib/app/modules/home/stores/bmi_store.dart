@@ -7,8 +7,8 @@ class BMIStore extends ChangeNotifier {
   MeasurementModel? result;
 
   void calculateBMI(String weightText, String heightText) {
-    var weight = double.parse(weightText);
-    var height = double.parse(heightText);
+    var weight = double.parse(weightText.trim().replaceAll(',', '.'));
+    var height = double.parse(heightText.trim().replaceAll(',', '.'));
     var bmi = min(weight / pow(height, 2), 40.0);
     var classification = _getClassification(bmi);
     result = MeasurementModel(

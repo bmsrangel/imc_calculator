@@ -1,7 +1,7 @@
+import 'package:calculadora_imc/app/modules/home/stores/history_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../shared/stores/auth_store.dart';
 import '../stores/bmi_store.dart';
 import '../widgets/input_card_widget.dart';
 
@@ -18,8 +18,8 @@ class CalculatorPage extends StatefulWidget {
 }
 
 class _CalculatorPageState extends State<CalculatorPage> {
-  late final AuthStore _authStore;
   late final BMIStore _bmiStore;
+  late final HistoryStore _historyStore;
 
   late final TextEditingController _weight$;
   late final TextEditingController _height$;
@@ -28,8 +28,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   @override
   void initState() {
-    _authStore = Modular.get<AuthStore>();
     _bmiStore = Modular.get<BMIStore>();
+    _historyStore = Modular.get<HistoryStore>();
 
     _bmiStore.addListener(_resultListener);
 
@@ -52,6 +52,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   void _resultListener() {
     if (_bmiStore.result != null) {
+      _historyStore.registerMeasurement(_bmiStore.result!);
       Modular.to.pushNamed('./results').then((_) {
         _bmiStore.result = null;
       });
@@ -60,7 +61,6 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
     var appBar = AppBar(
       title: Text(widget.title),
     );

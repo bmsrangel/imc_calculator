@@ -27,7 +27,7 @@ class InputCardWidget extends StatelessWidget {
                 controller: controller,
                 validator: Validatorless.multiple([
                   Validatorless.required('Campo obrigatório'),
-                  Validatorless.number('Por favor, insira um número válido'),
+                  CustomValidators.number('Por favor, insira um número válido'),
                   CustomValidators.greaterThanZero(
                     'O número precisa ser maior que zero',
                   )

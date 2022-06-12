@@ -6,6 +6,7 @@ import 'package:calculadora_imc/app/modules/home/pages/results_page.dart';
 import 'package:calculadora_imc/app/modules/home/services/history_local_storage_service.dart';
 import 'package:calculadora_imc/app/modules/home/services/shared_preferences_history_storage_service_impl.dart';
 import 'package:calculadora_imc/app/modules/home/stores/bmi_store.dart';
+import 'package:calculadora_imc/app/modules/home/stores/history_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,6 +23,11 @@ class HomeModule extends Module {
       ),
     ),
     Bind.lazySingleton((i) => BMIStore()),
+    Bind.lazySingleton(
+      (i) => HistoryStore(
+        i<HistoryLocalStorageService>(),
+      ),
+    ),
   ];
 
   @override
