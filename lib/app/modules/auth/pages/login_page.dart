@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
       _messengerKey.currentState?.showSnackBar(errorSnackbar);
     }
     if (_authStore.user != null) {
-      Modular.to.navigate('/');
+      Modular.to.navigate('/calculator');
     }
   }
 

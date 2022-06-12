@@ -65,7 +65,7 @@ class _SignUpPageState extends State<SignUpPage> {
       _messengerKey.currentState?.showSnackBar(errorSnackbar);
     }
     if (_authStore.user != null) {
-      Modular.to.navigate('/');
+      Modular.to.navigate('/calculator');
     }
   }
 

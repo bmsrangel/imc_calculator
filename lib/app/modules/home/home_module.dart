@@ -1,4 +1,7 @@
 import 'package:calculadora_imc/app/modules/home/guards/module_ready_guard.dart';
+import 'package:calculadora_imc/app/modules/home/pages/calculator_page.dart';
+import 'package:calculadora_imc/app/modules/home/pages/history_page.dart';
+import 'package:calculadora_imc/app/modules/home/pages/profile_page.dart';
 import 'package:calculadora_imc/app/modules/home/pages/results_page.dart';
 import 'package:calculadora_imc/app/modules/home/services/history_local_storage_service.dart';
 import 'package:calculadora_imc/app/modules/home/services/shared_preferences_history_storage_service_impl.dart';
@@ -29,6 +32,20 @@ class HomeModule extends Module {
       guards: [
         AuthGuard(),
         ModuleReadyGuard(),
+      ],
+      children: [
+        ChildRoute(
+          '/calculator',
+          child: (_, __) => const CalculatorPage(title: 'Calculadora IMC'),
+        ),
+        ChildRoute(
+          '/history',
+          child: (_, __) => const HistoryPage(),
+        ),
+        ChildRoute(
+          '/profile',
+          child: (_, __) => const ProfilePage(),
+        ),
       ],
     ),
     ChildRoute('/results', child: (_, __) => const ResultsPage()),
