@@ -16,7 +16,6 @@ import 'pages/home_page.dart';
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
-    AsyncBind<SharedPreferences>((i) => SharedPreferences.getInstance()),
     Bind.lazySingleton<HistoryLocalStorageService>(
       (i) => SharedPreferencesHistoryStorageServiceImpl(
         i<SharedPreferences>(),
@@ -43,6 +42,10 @@ class HomeModule extends Module {
         ChildRoute(
           '/calculator',
           child: (_, __) => const CalculatorPage(title: 'Calculadora IMC'),
+          guards: [
+            AuthGuard(),
+            ModuleReadyGuard(),
+          ],
         ),
         ChildRoute(
           '/history',

@@ -80,6 +80,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   InputCardWidget(
                     title: 'Peso (em kg)',
                     controller: _weight$,
+                    textInputAction: TextInputAction.next,
                   ),
                   InputCardWidget(
                     title: 'Altura (em m)',

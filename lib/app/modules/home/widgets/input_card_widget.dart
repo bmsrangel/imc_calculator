@@ -7,10 +7,12 @@ class InputCardWidget extends StatelessWidget {
     Key? key,
     required this.title,
     required this.controller,
+    this.textInputAction,
   }) : super(key: key);
 
   final String title;
   final TextEditingController controller;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class InputCardWidget extends StatelessWidget {
                 keyboardType: const TextInputType.numberWithOptions(
                   decimal: true,
                 ),
+                textInputAction: textInputAction,
               ),
               const SizedBox(height: 10.0),
               Text(

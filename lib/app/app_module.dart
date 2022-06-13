@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'modules/auth/auth_module.dart';
 import 'modules/home/home_module.dart';
@@ -12,6 +13,7 @@ import 'shared/stores/auth_store.dart';
 class AppModule extends Module {
   @override
   final List<Bind> binds = [
+    AsyncBind<SharedPreferences>((i) => SharedPreferences.getInstance()),
     Bind.lazySingleton<AuthRepository>(
       (i) => FirebaseAuthRepositoryImpl(FirebaseAuth.instance),
     ),
