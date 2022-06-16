@@ -26,7 +26,7 @@ class SharedPreferencesHistoryStorageServiceImpl
   Future<void> saveMeasurement(MeasurementModel newMeasurement) async {
     final newMeasurementString = newMeasurement.toJson();
     var stringMeasurements = _prefs.getStringList(_measurementsKey) ?? [];
-    stringMeasurements.add(newMeasurementString);
+    stringMeasurements.insert(0, newMeasurementString);
     await _prefs.setStringList(_measurementsKey, stringMeasurements);
   }
 
@@ -36,7 +36,7 @@ class SharedPreferencesHistoryStorageServiceImpl
     if (stringMeasurements.isEmpty) {
       return null;
     } else {
-      final stringMeasurement = stringMeasurements.last;
+      final stringMeasurement = stringMeasurements.first;
       return MeasurementModel.fromJson(stringMeasurement);
     }
   }

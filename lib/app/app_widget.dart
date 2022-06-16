@@ -6,6 +6,7 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Modular.setInitialRoute('/calculator');
     return MaterialApp.router(
       title: 'Calculadora IMC',
       routerDelegate: Modular.routerDelegate,

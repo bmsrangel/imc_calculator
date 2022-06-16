@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -20,7 +19,6 @@ Future<void> main() async {
   if (kDebugMode) {
     await FirebaseAuth.instance.useAuthEmulator(host, 9099);
     await FirebaseStorage.instance.useStorageEmulator(host, 9199);
-    FirebaseFirestore.instance.useFirestoreEmulator(host, 8080);
   }
   runApp(ModularApp(
     module: AppModule(),

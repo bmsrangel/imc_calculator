@@ -7,10 +7,12 @@ class InputCardWidget extends StatelessWidget {
     Key? key,
     required this.title,
     required this.controller,
+    this.textInputAction,
   }) : super(key: key);
 
   final String title;
   final TextEditingController controller;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class InputCardWidget extends StatelessWidget {
                 controller: controller,
                 validator: Validatorless.multiple([
                   Validatorless.required('Campo obrigatório'),
-                  Validatorless.number('Por favor, insira um número válido'),
+                  CustomValidators.number('Por favor, insira um número válido'),
                   CustomValidators.greaterThanZero(
                     'O número precisa ser maior que zero',
                   )
@@ -35,6 +37,7 @@ class InputCardWidget extends StatelessWidget {
                 keyboardType: const TextInputType.numberWithOptions(
                   decimal: true,
                 ),
+                textInputAction: textInputAction,
               ),
               const SizedBox(height: 10.0),
               Text(
