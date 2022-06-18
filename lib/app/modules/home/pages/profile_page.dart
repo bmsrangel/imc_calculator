@@ -43,9 +43,6 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return LoaderOverlay(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Perfil'),
-        ),
         body: Container(
           padding: const EdgeInsets.all(16.0),
           width: MediaQuery.of(context).size.width,

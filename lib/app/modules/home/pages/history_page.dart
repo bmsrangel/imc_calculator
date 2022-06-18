@@ -26,9 +26,6 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Histórico'),
-      ),
       body: Center(
         child: AnimatedBuilder(
           animation: _historyStore,

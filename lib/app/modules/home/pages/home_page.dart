@@ -1,3 +1,5 @@
+import 'package:calculadora_imc/app/modules/home/widgets/greeting_widget.dart';
+import 'package:calculadora_imc/app/shared/stores/auth_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -11,11 +13,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late final AuthStore _authStore;
+
   var pageIndex = 0;
+
+  @override
+  void initState() {
+    _authStore = Modular.get<AuthStore>();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: GreetingWidget(
+          currentDateTime: DateTime.now(),
+          displayName: _authStore.user!.displayName,
+        ),
+        centerTitle: false,
+      ),
       body: const RouterOutlet(),
       bottomNavigationBar: NavigationBar(
         destinations: const [
