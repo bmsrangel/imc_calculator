@@ -61,12 +61,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    var appBar = AppBar(
-      title: Text(widget.title),
-    );
-
     return Scaffold(
-      appBar: appBar,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
