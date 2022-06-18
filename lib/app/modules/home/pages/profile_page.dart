@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:calculadora_imc/app/shared/stores/auth_store.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import '../../../shared/stores/auth_store.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -30,20 +34,45 @@ class _ProfilePageState extends State<ProfilePage> {
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
-            CircleAvatar(
-              radius: 48.0,
-              backgroundImage: _authStore.user!.profileUrl != null
-                  ? CachedNetworkImageProvider(_authStore.user!.profileUrl!)
-                  : null,
-              child: _authStore.user!.profileUrl == null
-                  ? const Icon(
-                      Icons.person,
-                      size: 48.0,
-                    )
-                  : null,
+            AnimatedBuilder(
+              animation: _authStore,
+              builder: (_, __) => CircleAvatar(
+                radius: 48.0,
+                backgroundImage: _authStore.user!.profileUrl != null
+                    ? CachedNetworkImageProvider(_authStore.user!.profileUrl!)
+                    : null,
+                child: _authStore.user!.profileUrl == null
+                    ? const Icon(
+                        Icons.person,
+                        size: 48.0,
+                      )
+                    : null,
+              ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                if (Platform.isIOS) {
+                  showCupertinoModalPopup(
+                    context: context,
+                    builder: (_) => CupertinoActionSheet(
+                      message: const Text('Escolha a imagem'),
+                      cancelButton: const Text('Cancelar'),
+                      actions: _buildBottomSheetButtons(),
+                    ),
+                  );
+                } else {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) => BottomSheet(
+                      onClosing: () {},
+                      builder: (context) => Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: _buildBottomSheetButtons(),
+                      ),
+                    ),
+                  );
+                }
+              },
               child: const Text('Alterar imagem'),
             ),
             Text(
@@ -77,5 +106,24 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
     );
+  }
+
+  List<Widget> _buildBottomSheetButtons() {
+    return [
+      TextButton(
+        onPressed: () {
+          _authStore.setProfileImage(ImageSource.gallery);
+          Navigator.of(context).pop();
+        },
+        child: const Text('Galeria'),
+      ),
+      TextButton(
+        onPressed: () {
+          _authStore.setProfileImage(ImageSource.camera);
+          Navigator.of(context).pop();
+        },
+        child: const Text('Câmera'),
+      ),
+    ];
   }
 }

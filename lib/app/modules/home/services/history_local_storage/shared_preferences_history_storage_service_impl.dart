@@ -1,6 +1,7 @@
-import 'package:calculadora_imc/app/modules/home/models/measurement_model.dart';
-import 'package:calculadora_imc/app/modules/home/services/history_local_storage_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../models/measurement_model.dart';
+import 'history_local_storage_service.dart';
 
 class SharedPreferencesHistoryStorageServiceImpl
     implements HistoryLocalStorageService {

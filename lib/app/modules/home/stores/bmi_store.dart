@@ -1,7 +1,8 @@
 import 'dart:math';
 
-import 'package:calculadora_imc/app/modules/home/models/measurement_model.dart';
 import 'package:flutter/material.dart';
+
+import '../models/measurement_model.dart';
 
 class BMIStore extends ChangeNotifier {
   MeasurementModel? result;

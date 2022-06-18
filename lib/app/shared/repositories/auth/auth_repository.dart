@@ -6,4 +6,5 @@ abstract class AuthRepository {
   Future<UserModel> signUpWithEmailPassword(SignUpDTO userData);
   Future<void> resetPassword(String email);
   Future<void> logout();
+  Future<void> setProfileURL(String profileUrl);
 }

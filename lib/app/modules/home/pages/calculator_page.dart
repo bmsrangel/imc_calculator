@@ -1,8 +1,8 @@
-import 'package:calculadora_imc/app/modules/home/stores/history_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../stores/bmi_store.dart';
+import '../stores/history_store.dart';
 import '../widgets/input_card_widget.dart';
 
 class CalculatorPage extends StatefulWidget {

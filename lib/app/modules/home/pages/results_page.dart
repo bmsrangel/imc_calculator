@@ -1,8 +1,8 @@
-import 'package:calculadora_imc/app/modules/home/stores/bmi_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import '../stores/bmi_store.dart';
 import '../widgets/attribute_value_widget.dart';
 
 class ResultsPage extends StatefulWidget {
