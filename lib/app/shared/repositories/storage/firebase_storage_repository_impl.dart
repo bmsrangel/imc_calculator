@@ -22,6 +22,11 @@ class FirebaseStorageRepositoryImpl implements StorageRepository {
         '${uploadDto.userId}/$newFileNameWithExtension',
       );
       final imageFile = File(uploadDto.imageFileModel.path);
+      if (uploadDto.currentProfileURL != null) {
+        final currentProfileReference =
+            _storage.refFromURL(uploadDto.currentProfileURL!);
+        await currentProfileReference.delete();
+      }
       final uploadTask = await imageReference.putFile(
         imageFile,
         SettableMetadata(
