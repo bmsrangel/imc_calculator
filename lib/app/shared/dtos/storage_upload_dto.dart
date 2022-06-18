@@ -4,8 +4,10 @@ class StorageUploadDTO {
   StorageUploadDTO({
     required this.imageFileModel,
     required this.userId,
+    required this.currentProfileURL,
   });
 
   final ImageFileModel imageFileModel;
   final String userId;
+  final String? currentProfileURL;
 }

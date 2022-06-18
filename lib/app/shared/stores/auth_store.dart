@@ -81,13 +81,18 @@ class AuthStore extends ChangeNotifier {
         final uploadDTO = StorageUploadDTO(
           imageFileModel: imageFileModel,
           userId: user!.id,
+          currentProfileURL: user!.profileUrl,
         );
+        isLoading = true;
+        notifyListeners();
         final profileUrl = await _storageRepository.uploadImage(uploadDTO);
         await _authRepository.setProfileURL(profileUrl);
         user = user!.copyWith(profileUrl: profileUrl);
-        notifyListeners();
       } on StorageException catch (e) {
         error = e.message;
+      } finally {
+        isLoading = false;
+        notifyListeners();
       }
     }
   }
