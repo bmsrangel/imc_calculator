@@ -1,17 +1,17 @@
-import 'package:calculadora_imc/app/modules/home/guards/module_ready_guard.dart';
-import 'package:calculadora_imc/app/modules/home/pages/calculator_page.dart';
-import 'package:calculadora_imc/app/modules/home/pages/history_page.dart';
-import 'package:calculadora_imc/app/modules/home/pages/profile_page.dart';
-import 'package:calculadora_imc/app/modules/home/pages/results_page.dart';
-import 'package:calculadora_imc/app/modules/home/services/history_local_storage_service.dart';
-import 'package:calculadora_imc/app/modules/home/services/shared_preferences_history_storage_service_impl.dart';
-import 'package:calculadora_imc/app/modules/home/stores/bmi_store.dart';
-import 'package:calculadora_imc/app/modules/home/stores/history_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'guards/auth_guard.dart';
+import 'guards/module_ready_guard.dart';
+import 'pages/calculator_page.dart';
+import 'pages/history_page.dart';
 import 'pages/home_page.dart';
+import 'pages/profile_page.dart';
+import 'pages/results_page.dart';
+import 'services/history_local_storage/history_local_storage_service.dart';
+import 'services/history_local_storage/shared_preferences_history_storage_service_impl.dart';
+import 'stores/bmi_store.dart';
+import 'stores/history_store.dart';
 
 class HomeModule extends Module {
   @override

@@ -73,4 +73,14 @@ class FirebaseAuthRepositoryImpl implements AuthRepository {
   Future<void> logout() async {
     await _firebaseAuth.signOut();
   }
+
+  @override
+  Future<void> setProfileURL(String profileUrl) async {
+    try {
+      await _firebaseAuth.currentUser?.updatePhotoURL(profileUrl);
+      await _firebaseAuth.currentUser?.reload();
+    } on FirebaseAuthException catch (e) {
+      throw AuthException(e.code);
+    }
+  }
 }

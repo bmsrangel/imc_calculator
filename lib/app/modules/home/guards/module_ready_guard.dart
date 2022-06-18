@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import 'package:calculadora_imc/app/app_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import '../../../app_module.dart';
 
 class ModuleReadyGuard extends RouteGuard {
   @override

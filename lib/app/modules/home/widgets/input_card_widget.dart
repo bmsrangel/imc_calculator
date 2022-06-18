@@ -1,6 +1,7 @@
-import 'package:calculadora_imc/app/modules/home/validators/custom_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
+
+import '../validators/custom_validators.dart';
 
 class InputCardWidget extends StatelessWidget {
   const InputCardWidget({

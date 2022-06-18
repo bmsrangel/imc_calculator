@@ -1,6 +1,7 @@
-import 'package:calculadora_imc/app/modules/home/models/measurement_model.dart';
-import 'package:calculadora_imc/app/modules/home/services/history_local_storage_service.dart';
 import 'package:flutter/material.dart';
+
+import '../models/measurement_model.dart';
+import '../services/history_local_storage/history_local_storage_service.dart';
 
 class HistoryStore extends ChangeNotifier {
   HistoryStore(this._storageService);

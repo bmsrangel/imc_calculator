@@ -1,7 +1,8 @@
-import 'package:calculadora_imc/app/modules/home/stores/history_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
+
+import '../stores/history_store.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);

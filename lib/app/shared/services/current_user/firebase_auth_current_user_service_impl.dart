@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../models/user_model.dart';
+import '../../models/user_model.dart';
 import 'current_user_service.dart';
 
 class FirebaseAuthCurrentUserServiceImpl implements CurrentUserService {

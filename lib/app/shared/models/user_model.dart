@@ -35,4 +35,18 @@ class UserModel {
 
   factory UserModel.fromJson(String source) =>
       UserModel.fromMap(json.decode(source));
+
+  UserModel copyWith({
+    String? id,
+    String? displayName,
+    String? email,
+    String? profileUrl,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      displayName: displayName ?? this.displayName,
+      email: email ?? this.email,
+      profileUrl: profileUrl ?? this.profileUrl,
+    );
+  }
 }
