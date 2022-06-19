@@ -1,4 +1,4 @@
-import 'package:calculadora_imc/app/shared/models/image_file_model.dart';
+import '../models/image_file_model.dart';
 
 class StorageUploadDTO {
   StorageUploadDTO({

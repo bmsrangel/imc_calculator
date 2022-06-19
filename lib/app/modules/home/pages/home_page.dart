@@ -1,8 +1,8 @@
-import 'package:calculadora_imc/app/modules/home/stores/weather_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../shared/stores/auth_store.dart';
+import '../stores/weather_store.dart';
 import '../widgets/greeting_widget.dart';
 
 class HomePage extends StatefulWidget {

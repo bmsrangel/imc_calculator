@@ -1,8 +1,8 @@
-import 'package:calculadora_imc/app/shared/services/location/location_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../shared/services/location/location_service.dart';
 import 'guards/auth_guard.dart';
 import 'guards/location_guard.dart';
 import 'guards/module_ready_guard.dart';

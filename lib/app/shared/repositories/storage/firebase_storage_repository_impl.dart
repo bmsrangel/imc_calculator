@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:calculadora_imc/app/shared/dtos/storage_upload_dto.dart';
-import 'package:calculadora_imc/app/shared/exceptions/storage_exception.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+import '../../dtos/storage_upload_dto.dart';
+import '../../exceptions/storage_exception.dart';
 import 'storage_repository.dart';
 
 class FirebaseStorageRepositoryImpl implements StorageRepository {

@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import 'package:calculadora_imc/app/shared/services/location/location_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import '../../../shared/services/location/location_service.dart';
 
 class LocationGuard extends RouteGuard {
   @override

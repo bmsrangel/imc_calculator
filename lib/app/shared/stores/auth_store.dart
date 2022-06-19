@@ -1,13 +1,13 @@
-import 'package:calculadora_imc/app/shared/dtos/storage_upload_dto.dart';
-import 'package:calculadora_imc/app/shared/exceptions/storage_exception.dart';
-import 'package:calculadora_imc/app/shared/models/image_file_model.dart';
-import 'package:calculadora_imc/app/shared/repositories/storage/storage_repository.dart';
 import 'package:flutter/material.dart';
 
 import '../dtos/sign_up_dto.dart';
+import '../dtos/storage_upload_dto.dart';
 import '../exceptions/auth_exception.dart';
+import '../exceptions/storage_exception.dart';
+import '../models/image_file_model.dart';
 import '../models/user_model.dart';
 import '../repositories/auth/auth_repository.dart';
+import '../repositories/storage/storage_repository.dart';
 import '../services/current_user/current_user_service.dart';
 import '../services/image/image_service.dart';
 

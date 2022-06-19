@@ -1,4 +1,4 @@
-import 'package:calculadora_imc/app/shared/models/location_model.dart';
+import '../../models/location_model.dart';
 
 abstract class LocationService {
   Future<bool> isLocationEnabled();

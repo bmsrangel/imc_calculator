@@ -1,7 +1,7 @@
-import 'package:calculadora_imc/app/shared/exceptions/api_exception.dart';
-import 'package:calculadora_imc/app/shared/models/location_model.dart';
 import 'package:dio/dio.dart';
 
+import '../../../../shared/exceptions/api_exception.dart';
+import '../../../../shared/models/location_model.dart';
 import 'weather_repository.dart';
 
 class DioWeatherRepositoryImpl implements WeatherRepository {

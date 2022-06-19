@@ -1,6 +1,7 @@
-import 'package:calculadora_imc/app/shared/models/location_model.dart';
-import 'package:calculadora_imc/app/shared/services/location/location_service.dart';
 import 'package:geolocator/geolocator.dart';
+
+import '../../models/location_model.dart';
+import 'location_service.dart';
 
 class GeolocatorLocationServiceImpl implements LocationService {
   GeolocatorLocationServiceImpl(this._geolocator);

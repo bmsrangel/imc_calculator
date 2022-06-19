@@ -1,7 +1,7 @@
-import 'package:calculadora_imc/app/shared/exceptions/api_exception.dart';
-import 'package:calculadora_imc/app/shared/services/location/location_service.dart';
 import 'package:flutter/material.dart';
 
+import '../../../shared/exceptions/api_exception.dart';
+import '../../../shared/services/location/location_service.dart';
 import '../repositories/weather/weather_repository.dart';
 
 class WeatherStore extends ChangeNotifier {
