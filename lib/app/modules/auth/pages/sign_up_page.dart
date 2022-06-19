@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:password_validators/password_validators.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../../shared/dtos/sign_up_dto.dart';
 import '../../../shared/stores/auth_store.dart';
 import '../stores/obscure_text_store.dart';
-import '../validators/custom_validators.dart';
 import 'widgets/custom_text_form_field.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -113,22 +113,22 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       onPressed: _passwordObscureTextStore.toggleObscureText,
                     ),
-                    validator: Validatorless.multiple([
-                      Validatorless.required('Campo obrigatório'),
-                      Validatorless.min(
+                    validator: PasswordValidators.multipleValidators([
+                      PasswordValidators.required('Campo obrigatório'),
+                      PasswordValidators.minLength(
                         6,
                         'A senha precisa ter no mínimo 6 caracteres',
                       ),
-                      CustomValidators.containsNumberValidator(
+                      PasswordValidators.containsNumberValidator(
                         'A senha precisa ter pelo menos um número',
                       ),
-                      CustomValidators.upperCaseCharacteresValidator(
+                      PasswordValidators.upperCaseCharacteresValidator(
                         'A senha precisa ter pelo menos uma letra maiúscula',
                       ),
-                      CustomValidators.lowerCaseCharacteresValidator(
+                      PasswordValidators.lowerCaseCharacteresValidator(
                         'A senha precisa ter pelo menos uma letra minúscula',
                       ),
-                      CustomValidators.specialCharacteresValidator(
+                      PasswordValidators.specialCharacteresValidator(
                         'A senha não possui caracteres especiais',
                       ),
                     ]),
@@ -151,9 +151,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             onPressed: _confirmPasswordObscureTextStore
                                 .toggleObscureText,
                           ),
-                          validator: Validatorless.multiple([
-                            Validatorless.required('Campo obrigatório'),
-                            Validatorless.compare(
+                          validator: PasswordValidators.multipleValidators([
+                            PasswordValidators.required('Campo obrigatório'),
+                            PasswordValidators.comparePasswords(
                               _password$,
                               'As senhas não são coincidem',
                             ),
