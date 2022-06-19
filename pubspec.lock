@@ -352,6 +352,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  password_validators:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: ff3acfa38bbd069053083268ccab52e2092e43a9
+      url: "https://github.com/bmsrangel/flutter_password_validators.git"
+    source: git
+    version: "0.0.1"
   path:
     dependency: transitive
     description:
