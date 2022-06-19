@@ -62,39 +62,41 @@ class _CalculatorPageState extends State<CalculatorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  InputCardWidget(
-                    title: 'Peso (em kg)',
-                    controller: _weight$,
-                    textInputAction: TextInputAction.next,
-                  ),
-                  InputCardWidget(
-                    title: 'Altura (em m)',
-                    controller: _height$,
-                  ),
-                ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    InputCardWidget(
+                      title: 'Peso (em kg)',
+                      controller: _weight$,
+                      textInputAction: TextInputAction.next,
+                    ),
+                    InputCardWidget(
+                      title: 'Altura (em m)',
+                      controller: _height$,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 50.0),
-            ElevatedButton(
-              onPressed: () {
-                final isFormValid = _formKey.currentState!.validate();
-                if (isFormValid) {
-                  _bmiStore.calculateBMI(_weight$.text, _height$.text);
-                }
-              },
-              child: const Text('Calcular'),
-            ),
-          ],
+              const SizedBox(height: 50.0),
+              ElevatedButton(
+                onPressed: () {
+                  final isFormValid = _formKey.currentState!.validate();
+                  if (isFormValid) {
+                    _bmiStore.calculateBMI(_weight$.text, _height$.text);
+                  }
+                },
+                child: const Text('Calcular'),
+              ),
+            ],
+          ),
         ),
       ),
     );

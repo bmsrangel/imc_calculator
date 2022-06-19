@@ -77,112 +77,114 @@ class _SignUpPageState extends State<SignUpPage> {
         appBar: AppBar(
           title: const Text('Criar Conta'),
         ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                CustomTextFormField(
-                  labelText: 'Nome',
-                  controller: _name$,
-                  validator: Validatorless.required('Campo obrigatório'),
-                ),
-                const SizedBox(height: 10.0),
-                CustomTextFormField(
-                  labelText: 'E-mail',
-                  controller: _email$,
-                  keyboardType: TextInputType.emailAddress,
-                  validator: Validatorless.multiple([
-                    Validatorless.email('E-mail inválido'),
-                    Validatorless.required('Campo obrigatório'),
-                  ]),
-                ),
-                const SizedBox(height: 10.0),
-                AnimatedBuilder(
-                  animation: _passwordObscureTextStore,
-                  builder: (_, __) => CustomTextFormField(
-                    labelText: 'Senha',
-                    controller: _password$,
-                    obscureText: _passwordObscureTextStore.obscureText,
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _passwordObscureTextStore.obscureText
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                      ),
-                      onPressed: _passwordObscureTextStore.toggleObscureText,
-                    ),
-                    validator: PasswordValidators.multipleValidators([
-                      PasswordValidators.required('Campo obrigatório'),
-                      PasswordValidators.minLength(
-                        6,
-                        'A senha precisa ter no mínimo 6 caracteres',
-                      ),
-                      PasswordValidators.containsNumberValidator(
-                        'A senha precisa ter pelo menos um número',
-                      ),
-                      PasswordValidators.upperCaseCharacteresValidator(
-                        'A senha precisa ter pelo menos uma letra maiúscula',
-                      ),
-                      PasswordValidators.lowerCaseCharacteresValidator(
-                        'A senha precisa ter pelo menos uma letra minúscula',
-                      ),
-                      PasswordValidators.specialCharacteresValidator(
-                        'A senha não possui caracteres especiais',
-                      ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  CustomTextFormField(
+                    labelText: 'Nome',
+                    controller: _name$,
+                    validator: Validatorless.required('Campo obrigatório'),
+                  ),
+                  const SizedBox(height: 10.0),
+                  CustomTextFormField(
+                    labelText: 'E-mail',
+                    controller: _email$,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: Validatorless.multiple([
+                      Validatorless.email('E-mail inválido'),
+                      Validatorless.required('Campo obrigatório'),
                     ]),
                   ),
-                ),
-                const SizedBox(height: 10.0),
-                AnimatedBuilder(
-                    animation: _confirmPasswordObscureTextStore,
+                  const SizedBox(height: 10.0),
+                  AnimatedBuilder(
+                    animation: _passwordObscureTextStore,
                     builder: (_, __) => CustomTextFormField(
-                          labelText: 'Confirmar Senha',
-                          controller: _confirmPassword$,
-                          obscureText:
-                              _confirmPasswordObscureTextStore.obscureText,
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              _confirmPasswordObscureTextStore.obscureText
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                            onPressed: _confirmPasswordObscureTextStore
-                                .toggleObscureText,
-                          ),
-                          validator: PasswordValidators.multipleValidators([
-                            PasswordValidators.required('Campo obrigatório'),
-                            PasswordValidators.comparePasswords(
-                              _password$,
-                              'As senhas não são coincidem',
-                            ),
-                          ]),
-                        )),
-                const SizedBox(height: 30.0),
-                FractionallySizedBox(
-                  widthFactor: .6,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      final isFormValid = _formKey.currentState!.validate();
-                      if (isFormValid) {
-                        final userData = SignUpDTO(
-                          displayName: _name$.text,
-                          email: _email$.text,
-                          password: _password$.text,
-                        );
-                        _authStore.signUpWithEmailPassword(userData);
-                      }
-                    },
-                    child: AnimatedBuilder(
-                      animation: _authStore,
-                      builder: (_, __) => _authStore.isLoading
-                          ? const CircularProgressIndicator()
-                          : const Text('Criar conta'),
+                      labelText: 'Senha',
+                      controller: _password$,
+                      obscureText: _passwordObscureTextStore.obscureText,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _passwordObscureTextStore.obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: _passwordObscureTextStore.toggleObscureText,
+                      ),
+                      validator: PasswordValidators.multipleValidators([
+                        PasswordValidators.required('Campo obrigatório'),
+                        PasswordValidators.minLength(
+                          6,
+                          'A senha precisa ter no mínimo 6 caracteres',
+                        ),
+                        PasswordValidators.containsNumberValidator(
+                          'A senha precisa ter pelo menos um número',
+                        ),
+                        PasswordValidators.upperCaseCharacteresValidator(
+                          'A senha precisa ter pelo menos uma letra maiúscula',
+                        ),
+                        PasswordValidators.lowerCaseCharacteresValidator(
+                          'A senha precisa ter pelo menos uma letra minúscula',
+                        ),
+                        PasswordValidators.specialCharacteresValidator(
+                          'A senha não possui caracteres especiais',
+                        ),
+                      ]),
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 10.0),
+                  AnimatedBuilder(
+                      animation: _confirmPasswordObscureTextStore,
+                      builder: (_, __) => CustomTextFormField(
+                            labelText: 'Confirmar Senha',
+                            controller: _confirmPassword$,
+                            obscureText:
+                                _confirmPasswordObscureTextStore.obscureText,
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _confirmPasswordObscureTextStore.obscureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ),
+                              onPressed: _confirmPasswordObscureTextStore
+                                  .toggleObscureText,
+                            ),
+                            validator: PasswordValidators.multipleValidators([
+                              PasswordValidators.required('Campo obrigatório'),
+                              PasswordValidators.comparePasswords(
+                                _password$,
+                                'As senhas não são coincidem',
+                              ),
+                            ]),
+                          )),
+                  const SizedBox(height: 30.0),
+                  FractionallySizedBox(
+                    widthFactor: .6,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        final isFormValid = _formKey.currentState!.validate();
+                        if (isFormValid) {
+                          final userData = SignUpDTO(
+                            displayName: _name$.text,
+                            email: _email$.text,
+                            password: _password$.text,
+                          );
+                          _authStore.signUpWithEmailPassword(userData);
+                        }
+                      },
+                      child: AnimatedBuilder(
+                        animation: _authStore,
+                        builder: (_, __) => _authStore.isLoading
+                            ? const CircularProgressIndicator()
+                            : const Text('Criar conta'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
