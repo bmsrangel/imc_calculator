@@ -1,30 +1,59 @@
+import 'package:calculadora_imc/app/shared/services/location/location_service.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'guards/auth_guard.dart';
+import 'guards/location_guard.dart';
 import 'guards/module_ready_guard.dart';
 import 'pages/calculator_page.dart';
 import 'pages/history_page.dart';
 import 'pages/home_page.dart';
 import 'pages/profile_page.dart';
 import 'pages/results_page.dart';
+import 'repositories/weather/dio_weather_repository_impl.dart';
+import 'repositories/weather/weather_repository.dart';
 import 'services/history_local_storage/history_local_storage_service.dart';
 import 'services/history_local_storage/shared_preferences_history_storage_service_impl.dart';
 import 'stores/bmi_store.dart';
 import 'stores/history_store.dart';
+import 'stores/weather_store.dart';
 
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
+    // External Packages Register
+    Bind.lazySingleton(
+      (i) => Dio(
+        BaseOptions(
+          baseUrl: 'https://api.open-meteo.com/v1/',
+        ),
+      ),
+    ),
+
+    // Repositories Register
+    Bind.lazySingleton<WeatherRepository>(
+      (i) => DioWeatherRepositoryImpl(i<Dio>()),
+    ),
+
+    // Services Register
     Bind.lazySingleton<HistoryLocalStorageService>(
       (i) => SharedPreferencesHistoryStorageServiceImpl(
         i<SharedPreferences>(),
       ),
     ),
+
+    // Stores Register
     Bind.lazySingleton((i) => BMIStore()),
     Bind.lazySingleton(
       (i) => HistoryStore(
         i<HistoryLocalStorageService>(),
+      ),
+    ),
+    Bind.lazySingleton(
+      (i) => WeatherStore(
+        i<WeatherRepository>(),
+        i<LocationService>(),
       ),
     ),
   ];
@@ -45,6 +74,7 @@ class HomeModule extends Module {
           guards: [
             AuthGuard(),
             ModuleReadyGuard(),
+            LocationGuard(),
           ],
         ),
         ChildRoute(
