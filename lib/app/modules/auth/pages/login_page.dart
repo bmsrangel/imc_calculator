@@ -69,81 +69,84 @@ class _LoginPageState extends State<LoginPage> {
           title: const Text('Calculadora IMC'),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                CustomTextFormField(
-                  labelText: 'E-mail',
-                  keyboardType: TextInputType.emailAddress,
-                  textInputAction: TextInputAction.next,
-                  controller: _email$,
-                  validator: Validatorless.multiple([
-                    Validatorless.email('E-mail inválido'),
-                    Validatorless.required('Campo obrigatório'),
-                  ]),
-                ),
-                const SizedBox(height: 10.0),
-                AnimatedBuilder(
-                  animation: _obscureTextStore,
-                  builder: (_, __) => CustomTextFormField(
-                    labelText: 'Senha',
-                    obscureText: _obscureTextStore.obscureText,
-                    controller: _password$,
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscureTextStore.obscureText
-                            ? Icons.visibility
-                            : Icons.visibility_off,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  CustomTextFormField(
+                    labelText: 'E-mail',
+                    keyboardType: TextInputType.emailAddress,
+                    textInputAction: TextInputAction.next,
+                    controller: _email$,
+                    validator: Validatorless.multiple([
+                      Validatorless.email('E-mail inválido'),
+                      Validatorless.required('Campo obrigatório'),
+                    ]),
+                  ),
+                  const SizedBox(height: 10.0),
+                  AnimatedBuilder(
+                    animation: _obscureTextStore,
+                    builder: (_, __) => CustomTextFormField(
+                      labelText: 'Senha',
+                      obscureText: _obscureTextStore.obscureText,
+                      controller: _password$,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureTextStore.obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: _obscureTextStore.toggleObscureText,
                       ),
-                      onPressed: _obscureTextStore.toggleObscureText,
+                      validator:
+                          PasswordValidators.required('Campo obrigatório'),
                     ),
-                    validator: PasswordValidators.required('Campo obrigatório'),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        Modular.to.pushNamed('./reset');
+                      },
+                      child: const Text(
+                        'Esqueceu sua senha?',
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  FractionallySizedBox(
+                    widthFactor: .7,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        final isFormValid = _formKey.currentState!.validate();
+                        if (isFormValid) {
+                          _authStore.loginWithEmailPassword(
+                            _email$.text,
+                            _password$.text,
+                          );
+                        }
+                      },
+                      child: AnimatedBuilder(
+                        animation: _authStore,
+                        builder: (_, __) => _authStore.isLoading
+                            ? const CircularProgressIndicator()
+                            : const Text('Entrar'),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 40.0),
+                  const Text('Não possui conta?'),
+                  TextButton(
+                    child: const Text('Crie a sua!'),
                     onPressed: () {
-                      Modular.to.pushNamed('./reset');
+                      Modular.to.pushNamed('./signup');
                     },
-                    child: const Text(
-                      'Esqueceu sua senha?',
-                    ),
                   ),
-                ),
-                const SizedBox(height: 20.0),
-                FractionallySizedBox(
-                  widthFactor: .7,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      final isFormValid = _formKey.currentState!.validate();
-                      if (isFormValid) {
-                        _authStore.loginWithEmailPassword(
-                          _email$.text,
-                          _password$.text,
-                        );
-                      }
-                    },
-                    child: AnimatedBuilder(
-                      animation: _authStore,
-                      builder: (_, __) => _authStore.isLoading
-                          ? const CircularProgressIndicator()
-                          : const Text('Entrar'),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 40.0),
-                const Text('Não possui conta?'),
-                TextButton(
-                  child: const Text('Crie a sua!'),
-                  onPressed: () {
-                    Modular.to.pushNamed('./signup');
-                  },
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
