@@ -46,80 +46,83 @@ class _ProfilePageState extends State<ProfilePage> {
         body: Container(
           padding: const EdgeInsets.all(16.0),
           width: MediaQuery.of(context).size.width,
-          child: Column(
-            children: [
-              AnimatedBuilder(
-                animation: _authStore,
-                builder: (_, __) => CircleAvatar(
-                  radius: 48.0,
-                  backgroundImage: _authStore.user!.profileUrl != null
-                      ? CachedNetworkImageProvider(_authStore.user!.profileUrl!)
-                      : null,
-                  child: _authStore.user!.profileUrl == null
-                      ? const Icon(
-                          Icons.person,
-                          size: 48.0,
-                        )
-                      : null,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                AnimatedBuilder(
+                  animation: _authStore,
+                  builder: (_, __) => CircleAvatar(
+                    radius: 48.0,
+                    backgroundImage: _authStore.user!.profileUrl != null
+                        ? CachedNetworkImageProvider(
+                            _authStore.user!.profileUrl!)
+                        : null,
+                    child: _authStore.user!.profileUrl == null
+                        ? const Icon(
+                            Icons.person,
+                            size: 48.0,
+                          )
+                        : null,
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () {
-                  if (Platform.isIOS) {
-                    showCupertinoModalPopup(
-                      context: context,
-                      builder: (_) => CupertinoActionSheet(
-                        message: const Text('Escolha a imagem'),
-                        // cancelButton: CupertinoActionSheetAction(
-                        //   onPressed: () => Navigator.pop(context),
-                        //   child: const Text('Cancelar'),
-                        // ),
-                        actions: _buildBottomSheetButtons(),
-                      ),
-                    );
-                  } else {
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (context) => BottomSheet(
-                        onClosing: () {},
-                        builder: (context) => Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: _buildBottomSheetButtons(),
-                        ),
-                      ),
-                    );
-                  }
-                },
-                child: const Text('Alterar imagem'),
-              ),
-              Text(
-                _authStore.user!.displayName,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 28.0,
-                ),
-              ),
-              Text(
-                _authStore.user!.email,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.grey[600],
-                ),
-              ),
-              const SizedBox(height: 50.0),
-              FractionallySizedBox(
-                widthFactor: .7,
-                child: ElevatedButton(
+                TextButton(
                   onPressed: () {
-                    _authStore.logout();
-                    Modular.to.navigate('/auth/');
+                    if (Platform.isIOS) {
+                      showCupertinoModalPopup(
+                        context: context,
+                        builder: (_) => CupertinoActionSheet(
+                          message: const Text('Escolha a imagem'),
+                          // cancelButton: CupertinoActionSheetAction(
+                          //   onPressed: () => Navigator.pop(context),
+                          //   child: const Text('Cancelar'),
+                          // ),
+                          actions: _buildBottomSheetButtons(),
+                        ),
+                      );
+                    } else {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) => BottomSheet(
+                          onClosing: () {},
+                          builder: (context) => Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: _buildBottomSheetButtons(),
+                          ),
+                        ),
+                      );
+                    }
                   },
-                  child: const Text('Sair'),
+                  child: const Text('Alterar imagem'),
                 ),
-              ),
-            ],
+                Text(
+                  _authStore.user!.displayName,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 28.0,
+                  ),
+                ),
+                Text(
+                  _authStore.user!.email,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.grey[600],
+                  ),
+                ),
+                const SizedBox(height: 50.0),
+                FractionallySizedBox(
+                  widthFactor: .7,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _authStore.logout();
+                      Modular.to.navigate('/auth/');
+                    },
+                    child: const Text('Sair'),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
