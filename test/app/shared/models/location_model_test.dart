@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:calculadora_imc/app/shared/models/location_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -61,4 +63,32 @@ void main() {
   );
 
   // TODO: write tests for fromJson & toJson
+  test(
+    'LocationModel.fromJson() should return an instance of LocationModel from a JSON string',
+    () {
+      final mockedMap = {
+        'latitude': latitude,
+        'longitude': longitude,
+      };
+      final mockedJson = jsonEncode(mockedMap);
+      final expectedResult = LocationModel.fromJson(mockedJson);
+      expect(expectedResult, isA<LocationModel>());
+      expect(expectedResult.latitude, locationModel.latitude);
+      expect(expectedResult.longitude, locationModel.longitude);
+    },
+  );
+
+  test(
+    'LocationModel.toJson() should return a String',
+    () {
+      final mockedMap = {
+        'latitude': latitude,
+        'longitude': longitude,
+      };
+      final mockedJson = jsonEncode(mockedMap);
+      final expectedResult = locationModel.toJson();
+      expect(expectedResult, isA<String>());
+      expect(expectedResult, mockedJson);
+    },
+  );
 }
