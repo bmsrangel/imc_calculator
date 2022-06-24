@@ -7,6 +7,7 @@ void main() {
   late LocationModel locationModel;
   late double latitude;
   late double longitude;
+  late Map<String, dynamic> mockedMap;
 
   setUpAll(
     () {
@@ -16,6 +17,10 @@ void main() {
         latitude: latitude,
         longitude: longitude,
       );
+      mockedMap = {
+        'latitude': latitude,
+        'longitude': longitude,
+      };
     },
   );
 
@@ -27,7 +32,7 @@ void main() {
   );
 
   test(
-    'locationModel attributes should match values abote',
+    'locationModel attributes should match values above',
     () {
       expect(locationModel.latitude, latitude);
       expect(locationModel.longitude, longitude);
@@ -37,23 +42,14 @@ void main() {
   test(
     'locationModel.toMap() should return a Map with proper keys and values',
     () {
-      final expectedMap = {
-        'latitude': latitude,
-        'longitude': longitude,
-      };
-
       final locationModelMap = locationModel.toMap();
-      expect(locationModelMap, expectedMap);
+      expect(locationModelMap, mockedMap);
     },
   );
 
   test(
     'LocationModel.fromMap() should return an instance of LocationModel with proper parameters',
     () {
-      final mockedMap = {
-        'latitude': latitude,
-        'longitude': longitude,
-      };
       final result = LocationModel.fromMap(mockedMap);
 
       expect(result, isA<LocationModel>());
@@ -62,14 +58,9 @@ void main() {
     },
   );
 
-  // TODO: write tests for fromJson & toJson
   test(
     'LocationModel.fromJson() should return an instance of LocationModel from a JSON string',
     () {
-      final mockedMap = {
-        'latitude': latitude,
-        'longitude': longitude,
-      };
       final mockedJson = jsonEncode(mockedMap);
       final expectedResult = LocationModel.fromJson(mockedJson);
       expect(expectedResult, isA<LocationModel>());
@@ -81,10 +72,6 @@ void main() {
   test(
     'LocationModel.toJson() should return a String',
     () {
-      final mockedMap = {
-        'latitude': latitude,
-        'longitude': longitude,
-      };
       final mockedJson = jsonEncode(mockedMap);
       final expectedResult = locationModel.toJson();
       expect(expectedResult, isA<String>());
