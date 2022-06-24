@@ -56,3 +56,7 @@ storage.rules
 /ios/firebase_app_id_file.json
 /android/app/google-services.json
 data
+
+#othet
+coverage_assist.sh
+/test/coverage_helper_test.dart
