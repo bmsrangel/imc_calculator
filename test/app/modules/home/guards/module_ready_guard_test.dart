@@ -1,6 +1,8 @@
 import 'package:calculadora_imc/app/app_module.dart';
 import 'package:calculadora_imc/app/modules/home/guards/module_ready_guard.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_storage_mocks/firebase_storage_mocks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -25,8 +27,8 @@ void main() {
       mockSharedPreferences = MockSharedPreferences();
       guard = ModuleReadyGuard();
       initModule(AppModule(), replaceBinds: [
-        Bind.instance(mockFirebaseAuth),
-        Bind.instance(mockFirebaseStorage),
+        Bind.instance<FirebaseAuth>(mockFirebaseAuth),
+        Bind.instance<FirebaseStorage>(mockFirebaseStorage),
         AsyncBind<SharedPreferences>((i) async => mockSharedPreferences),
       ]);
     },

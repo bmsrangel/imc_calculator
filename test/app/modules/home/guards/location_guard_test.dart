@@ -1,7 +1,9 @@
 import 'package:calculadora_imc/app/app_module.dart';
 import 'package:calculadora_imc/app/modules/home/guards/location_guard.dart';
 import 'package:calculadora_imc/app/shared/services/location/location_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_storage_mocks/firebase_storage_mocks.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -23,8 +25,8 @@ void main() {
       guard = LocationGuard();
       mockLocationService = MockLocationService();
       initModule(AppModule(), replaceBinds: [
-        Bind.instance(mockFirebaseAuth),
-        Bind.instance(mockFirebaseStorage),
+        Bind.instance<FirebaseAuth>(mockFirebaseAuth),
+        Bind.instance<FirebaseStorage>(mockFirebaseStorage),
         Bind.instance<LocationService>(mockLocationService),
       ]);
     },

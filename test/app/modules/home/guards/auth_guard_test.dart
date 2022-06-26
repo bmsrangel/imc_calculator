@@ -2,7 +2,9 @@ import 'package:calculadora_imc/app/app_module.dart';
 import 'package:calculadora_imc/app/modules/home/guards/auth_guard.dart';
 import 'package:calculadora_imc/app/shared/models/user_model.dart';
 import 'package:calculadora_imc/app/shared/stores/auth_store.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_storage_mocks/firebase_storage_mocks.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -24,8 +26,8 @@ void main() {
       guard = AuthGuard();
       mockAuthStore = MockAuthStore();
       initModule(AppModule(), replaceBinds: [
-        Bind.instance(mockFirebaseAuth),
-        Bind.instance(mockFirebaseStorage),
+        Bind.instance<FirebaseAuth>(mockFirebaseAuth),
+        Bind.instance<FirebaseStorage>(mockFirebaseStorage),
         Bind.instance<AuthStore>(mockAuthStore),
       ]);
     },

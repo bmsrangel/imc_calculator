@@ -39,6 +39,7 @@ class InputCardWidget extends StatelessWidget {
                   decimal: true,
                 ),
                 textInputAction: textInputAction,
+                // TODO: add filtering
               ),
               const SizedBox(height: 10.0),
               Text(
