@@ -49,12 +49,14 @@ A execução deste projeto possui os seguintes requisitos:
 - Um desktop ou laptop com Windows 10 ou posterior, Linux (64-bit), macOS ou Chrome OS;
   - Maiores informações sobre os requisitos podem ser encontrados na página de instalação do Flutter (link abaixo);
 - [Flutter](https://docs.flutter.dev/get-started/install)
-  - Versão mínima: 2.5;
+  - Versão mínima: 3.0.1;
     - Para verificar a versão do Flutter instalada e status da instalação dos seus componentes, basta executar no terminal o comando `flutter doctor -v`;
 - [Android Studio](https://developer.android.com/studio);
   - Depois de instalado, é necessário acrescentar os plugins do Dart e do Flutter;
 - [Visual Studio Code](https://code.visualstudio.com) (Opcional);
   - Depois de instalado, é necessário acrescentar as extensões do Dart e do Flutter;
+- Versão mínima do Android: 19
+- Versão mínima do iOS: 12.0
 
 ### Pré-requisitos específicos
 
