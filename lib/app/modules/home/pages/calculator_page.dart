@@ -24,6 +24,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
   late final TextEditingController _weight$;
   late final TextEditingController _height$;
 
+  late final FocusNode _weightFocus$;
+  late final FocusNode _heightFocus$;
+
   late final GlobalKey<FormState> _formKey;
 
   @override
@@ -36,6 +39,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
     _weight$ = TextEditingController();
     _height$ = TextEditingController();
 
+    _weightFocus$ = FocusNode();
+    _heightFocus$ = FocusNode();
+
     _formKey = GlobalKey<FormState>();
 
     super.initState();
@@ -45,6 +51,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
   void dispose() {
     _weight$.dispose();
     _height$.dispose();
+
+    _weightFocus$.dispose();
+    _heightFocus$.dispose();
 
     _bmiStore.removeListener(_resultListener);
     super.dispose();
@@ -77,10 +86,12 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       title: 'Peso (em kg)',
                       controller: _weight$,
                       textInputAction: TextInputAction.next,
+                      focusNode: _weightFocus$,
                     ),
                     InputCardWidget(
                       title: 'Altura (em m)',
                       controller: _height$,
+                      focusNode: _heightFocus$,
                     ),
                   ],
                 ),
@@ -90,6 +101,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 onPressed: () {
                   final isFormValid = _formKey.currentState!.validate();
                   if (isFormValid) {
+                    _weightFocus$.unfocus();
+                    _heightFocus$.unfocus();
                     _bmiStore.calculateBMI(_weight$.text, _height$.text);
                   }
                 },

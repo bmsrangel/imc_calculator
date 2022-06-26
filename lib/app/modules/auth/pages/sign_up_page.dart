@@ -156,7 +156,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               PasswordValidators.required('Campo obrigatório'),
                               PasswordValidators.comparePasswords(
                                 _password$,
-                                'As senhas não são coincidem',
+                                'As senhas não coincidem',
                               ),
                             ]),
                           )),

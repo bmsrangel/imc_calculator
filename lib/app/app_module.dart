@@ -56,6 +56,7 @@ class AppModule extends Module {
         i<ImageService>(),
         i<StorageRepository>(),
       ),
+      onDispose: (store) => store.dispose(),
     ),
   ];
 

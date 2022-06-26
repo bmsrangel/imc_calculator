@@ -85,7 +85,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         context: context,
                         builder: (context) => BottomSheet(
                           onClosing: () {},
-                          // TODO: check this
                           builder: (context) => Column(
                             mainAxisSize: MainAxisSize.min,
                             children: _buildBottomSheetButtons(),

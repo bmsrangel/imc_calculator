@@ -10,7 +10,6 @@ void main() {
   late FirebaseStorageRepositoryImpl repository;
   late ImageFileModel mockImageFile;
   late String cameraPath;
-  late String newFileURL;
   late StorageUploadDTO mockStorageUpload;
 
   setUp(
@@ -27,7 +26,6 @@ void main() {
           repository = FirebaseStorageRepositoryImpl(mockFirebaseStorage);
           cameraPath = 'path/camera.jpg';
           mockImageFile = ImageFileModel(path: cameraPath);
-          newFileURL = 'http://image.firebase.com';
           mockStorageUpload = StorageUploadDTO(
             imageFileModel: mockImageFile,
             userId: 'any',

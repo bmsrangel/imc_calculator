@@ -9,11 +9,13 @@ class InputCardWidget extends StatelessWidget {
     required this.title,
     required this.controller,
     this.textInputAction,
+    this.focusNode,
   }) : super(key: key);
 
   final String title;
   final TextEditingController controller;
   final TextInputAction? textInputAction;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class InputCardWidget extends StatelessWidget {
               TextFormField(
                 textAlign: TextAlign.center,
                 controller: controller,
+                focusNode: focusNode,
                 validator: Validatorless.multiple([
                   Validatorless.required('Campo obrigatório'),
                   CustomValidators.number('Por favor, insira um número válido'),
@@ -39,7 +42,6 @@ class InputCardWidget extends StatelessWidget {
                   decimal: true,
                 ),
                 textInputAction: textInputAction,
-                // TODO: add filtering
               ),
               const SizedBox(height: 10.0),
               Text(

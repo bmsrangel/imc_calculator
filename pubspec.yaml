@@ -1,9 +1,9 @@
 name: calculadora_imc
-description: A new Flutter project.
+description: Aplicação que calcula e apresenta o IMC (Índice de Massa Corporal).
 
 publish_to: "none"
 
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
   sdk: ">=2.17.1 <3.0.0"

@@ -95,4 +95,19 @@ class AuthStore extends ChangeNotifier {
       }
     }
   }
+
+  Future<void> resetPassword(String email) async {
+    try {
+      isLoading = true;
+      error = null;
+      notifyListeners();
+      await _authRepository.resetPassword(email);
+    } on AuthException catch (e) {
+      error = e.message;
+    } finally {
+      isLoading = false;
+      notifyListeners();
+      error = null;
+    }
+  }
 }

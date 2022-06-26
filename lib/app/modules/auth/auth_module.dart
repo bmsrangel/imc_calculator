@@ -8,7 +8,9 @@ import 'stores/obscure_text_store.dart';
 class AuthModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.factory((i) => ObscureTextStore()),
+    Bind.factory(
+      (i) => ObscureTextStore(),
+    ),
   ];
 
   @override

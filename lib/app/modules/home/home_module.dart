@@ -49,12 +49,14 @@ class HomeModule extends Module {
       (i) => HistoryStore(
         i<HistoryLocalStorageService>(),
       ),
+      onDispose: (store) => store.dispose(),
     ),
     Bind.lazySingleton<WeatherStore>(
       (i) => WeatherStore(
         i<WeatherRepository>(),
         i<LocationService>(),
       ),
+      onDispose: (store) => store.dispose(),
     ),
   ];
 
