@@ -30,15 +30,4 @@ class SharedPreferencesHistoryStorageServiceImpl
     stringMeasurements.insert(0, newMeasurementString);
     await _prefs.setStringList(_measurementsKey, stringMeasurements);
   }
-
-  @override
-  Future<MeasurementModel?> getLastMeasurement() async {
-    final stringMeasurements = _prefs.getStringList(_measurementsKey) ?? [];
-    if (stringMeasurements.isEmpty) {
-      return null;
-    } else {
-      final stringMeasurement = stringMeasurements.first;
-      return MeasurementModel.fromJson(stringMeasurement);
-    }
-  }
 }

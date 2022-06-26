@@ -23,7 +23,7 @@ class HomeModule extends Module {
   @override
   final List<Bind> binds = [
     // External Packages Register
-    Bind.lazySingleton(
+    Bind.lazySingleton<Dio>(
       (i) => Dio(
         BaseOptions(
           baseUrl: 'https://api.open-meteo.com/v1/',
@@ -44,13 +44,13 @@ class HomeModule extends Module {
     ),
 
     // Stores Register
-    Bind.lazySingleton((i) => BMIStore()),
-    Bind.lazySingleton(
+    Bind.lazySingleton<BMIStore>((i) => BMIStore()),
+    Bind.lazySingleton<HistoryStore>(
       (i) => HistoryStore(
         i<HistoryLocalStorageService>(),
       ),
     ),
-    Bind.lazySingleton(
+    Bind.lazySingleton<WeatherStore>(
       (i) => WeatherStore(
         i<WeatherRepository>(),
         i<LocationService>(),

@@ -63,10 +63,9 @@ class AuthStore extends ChangeNotifier {
   }
 
   Future<void> logout() async {
-    _authRepository.logout().then((_) {
-      user = null;
-      error = null;
-    });
+    await _authRepository.logout();
+    user = null;
+    error = null;
   }
 
   Future<void> setProfileImage(ImageSource source) async {

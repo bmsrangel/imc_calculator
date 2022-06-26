@@ -31,6 +31,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 child: ElevatedButton(
                   onPressed: () {},
                   child: const Text('Recuperar Senha'),
+                  // TODO: implement forgot password functionality
                 ),
               ),
             ],

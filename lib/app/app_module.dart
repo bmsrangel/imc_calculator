@@ -24,10 +24,10 @@ class AppModule extends Module {
   final List<Bind> binds = [
     // External Packages Registers
     AsyncBind<SharedPreferences>((i) => SharedPreferences.getInstance()),
-    Bind.lazySingleton((i) => ImagePicker()),
-    Bind.singleton((i) => FirebaseAuth.instance),
-    Bind.singleton((i) => FirebaseStorage.instance),
-    Bind.lazySingleton((i) => GeolocatorPlatform.instance),
+    Bind.lazySingleton<ImagePicker>((i) => ImagePicker()),
+    Bind.singleton<FirebaseAuth>((i) => FirebaseAuth.instance),
+    Bind.singleton<FirebaseStorage>((i) => FirebaseStorage.instance),
+    Bind.lazySingleton<GeolocatorPlatform>((i) => GeolocatorPlatform.instance),
 
     // Repositories Registers
     Bind.lazySingleton<AuthRepository>(
@@ -49,7 +49,7 @@ class AppModule extends Module {
     ),
 
     // Stores Registers
-    Bind.lazySingleton(
+    Bind.lazySingleton<AuthStore>(
       (i) => AuthStore(
         i<AuthRepository>(),
         i<CurrentUserService>(),

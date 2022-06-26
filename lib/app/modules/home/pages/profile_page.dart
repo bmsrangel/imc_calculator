@@ -55,7 +55,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     radius: 48.0,
                     backgroundImage: _authStore.user!.profileUrl != null
                         ? CachedNetworkImageProvider(
-                            _authStore.user!.profileUrl!)
+                            _authStore.user!.profileUrl!,
+                          )
                         : null,
                     child: _authStore.user!.profileUrl == null
                         ? const Icon(
@@ -84,6 +85,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         context: context,
                         builder: (context) => BottomSheet(
                           onClosing: () {},
+                          // TODO: check this
                           builder: (context) => Column(
                             mainAxisSize: MainAxisSize.min,
                             children: _buildBottomSheetButtons(),

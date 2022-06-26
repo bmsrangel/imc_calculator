@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../dtos/storage_upload_dto.dart';
 import '../../exceptions/storage_exception.dart';
@@ -44,5 +45,10 @@ class FirebaseStorageRepositoryImpl implements StorageRepository {
     final splittedPath = filePath.split('.');
     final fileExtension = splittedPath.last;
     return fileExtension;
+  }
+
+  @visibleForTesting
+  String getFileExtension(String filePath) {
+    return _getFileExtension(filePath);
   }
 }
