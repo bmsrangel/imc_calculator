@@ -36,4 +36,9 @@ class BMIStore extends ChangeNotifier {
       return 'Obesidade grave';
     }
   }
+
+  @visibleForTesting
+  String getClassification(double bmi) {
+    return _getClassification(bmi);
+  }
 }

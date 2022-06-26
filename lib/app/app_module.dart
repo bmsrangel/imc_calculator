@@ -49,7 +49,7 @@ class AppModule extends Module {
     ),
 
     // Stores Registers
-    Bind.lazySingleton(
+    Bind.lazySingleton<AuthStore>(
       (i) => AuthStore(
         i<AuthRepository>(),
         i<CurrentUserService>(),
